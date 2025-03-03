@@ -26,9 +26,10 @@ def get_role_rank_patch_winrate(role, rank, patch):
     return pd.DataFrame({'champion': champions, 'winrate': winrates, 'pick_rate': pick_rates})
 
 st.title("OP.GG Stats Normal Distribution")
-selected_tier = st.selectbox("Select Tier", options=all_tiers, index=0)
+selected_tier = st.selectbox("Select Tier", options=all_tiers, index=9)
 selected_patch = st.selectbox("Select Patch", options=all_patches, index=0)
 refresh = st.button("Refresh Stats")
+os.makedirs("data", exist_ok=True)
 cache_file = "data/stats_cache.pkl"
 
 if refresh:
