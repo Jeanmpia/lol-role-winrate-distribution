@@ -28,24 +28,26 @@ def get_role_rank_patch_winrate(role, rank, patch):
 st.title("OP.GG Stats Normal Distribution")
 selected_tier = st.selectbox("Select Tier", options=all_tiers, index=9)
 selected_patch = st.selectbox("Select Patch", options=all_patches, index=0)
-refresh = st.button("Refresh Stats")
+# refresh = st.button("Refresh Stats")
 os.makedirs("data", exist_ok=True)
 cache_file = "data/stats_cache.pkl"
 
-if refresh:
-    data_cache = {}
-    for role in all_roles:
-        key = (role, selected_tier, selected_patch)
-        df = get_role_rank_patch_winrate(role, selected_tier, selected_patch)
-        data_cache[key] = df
-    with open(cache_file, "wb") as f:
-        pickle.dump(data_cache, f)
-else:
-    if os.path.exists(cache_file):
-        with open(cache_file, "rb") as f:
-            data_cache = pickle.load(f)
-    else:
-        data_cache = {}
+
+
+# if refresh:
+#     data_cache = {}
+#     for role in all_roles:
+#         key = (role, selected_tier, selected_patch)
+#         df = get_role_rank_patch_winrate(role, selected_tier, selected_patch)
+#         data_cache[key] = df
+#     with open(cache_file, "wb") as f:
+#         pickle.dump(data_cache, f)
+# else:
+if os.path.exists(cache_file):
+    with open(cache_file, "rb") as f:
+        data_cache = pickle.load(f)
+#     else:
+#         data_cache = {}
 
 role_data = {}
 for role in all_roles:
